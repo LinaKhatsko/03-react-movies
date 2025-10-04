@@ -1,24 +1,24 @@
 import { useState } from 'react'
-import './App.module.css'
+import toast, { Toaster } from "react-hot-toast";
+import SearchBar from "../SearchBar/SearchBar";
+import { fetchMovies } from "../../services/movieService";
+import type { Movie } from "../../types/movie";
+import styles from "./App.module.css";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const hendleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("hendleSubmit");
-    const formData = new FormData(e.currentTarget);
-    console.log("formData", formData.get("name"));
-    e.currentTarget.reset();
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const getMovieByQuery = async (query: string) => {
+
+  
     
   };
 
   return (
-    <form onSubmit={hendleSubmit}>
-      <label>Name</label>
-      <input type="text" name="name" />
-      <button type="submit">Submit</button>
-      </form>
-  )
-}
+    <div className={styles.app}>
+      <Toaster position="top-center" />
+      <SearchBar onSubmit={getMovieByQuery} />
+    </div>
+  );
+};
 
 export default App

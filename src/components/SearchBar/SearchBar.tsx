@@ -1,4 +1,21 @@
+// Компонент пошукової панелі.
+// Основне:
+// - Керує сабмітом форми, валідує поле (не порожнє).
+// - Викликає onSubmit(query) для пошуку фільмів.
+// - Показує зовнішнє посилання на TMDB, містить інпут та кнопку.
+import toast from "react-hot-toast";
+import styles from "./SearchBar.module.css";
 
+interface SearchBarProps {
+    onSubmit: (query: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
+    const handleSubmit = (formData: FormData) => {
+        const query = formData.get("query") as string;
+
+    }
+return (
 <header className={styles.header}>
   <div className={styles.container}>
     <a
@@ -9,7 +26,7 @@
     >
       Powered by TMDB
     </a>
-    <form className={styles.form}>
+    <form className={styles.form} action={handleSubmit}>
       <input
         className={styles.input}
         type="text"
@@ -23,4 +40,8 @@
       </button>
     </form>
   </div>
-</header>
+    </header>
+    )
+};
+
+export default SearchBar;
