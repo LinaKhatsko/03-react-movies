@@ -10,9 +10,17 @@ interface SearchBarProps {
     onSubmit: (query: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
+const SearchBar = ({ onSubmit }: SearchBarProps) => {
+     // Ця функція буде викликана атрибутом `action`
     const handleSubmit = (formData: FormData) => {
         const query = formData.get("query") as string;
+
+        if (query.trim() === "") {
+            toast.error("Please enter your search query.");
+            return;
+        }
+        // Викликаємо функцію з пропсів для пошуку фільмів
+        onSubmit(query);
 
     }
 return (
