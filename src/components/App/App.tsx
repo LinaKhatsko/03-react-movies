@@ -1,16 +1,23 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.module.css'
 
 const App = () => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const hendleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("hendleSubmit");
+    const formData = new FormData(e.currentTarget);
+    console.log("formData", formData.get("name"));
+    e.currentTarget.reset();
+    
+  };
 
   return (
-    <form>
+    <form onSubmit={hendleSubmit}>
       <label>Name</label>
-      <input type="text" name="name"/>
-      App</form>
+      <input type="text" name="name" />
+      <button type="submit">Submit</button>
+      </form>
   )
 }
 
