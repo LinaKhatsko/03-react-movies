@@ -27,7 +27,7 @@ const App = () => {
             setMovies(data);
         } catch {
             setError(true);
-            toast.error("There was an error, please try again...");
+            // toast.error("There was an error, please try again...");
         } finally {
             setIsLoading(false);
         }
